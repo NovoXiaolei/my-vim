@@ -48,6 +48,8 @@ nnoremap <Leader>jw <C-W>j
 
 " 定义快捷键在结对符之间跳转
 nmap <Leader>M %
+nmap <Leader>nl :nohls<CR>
+nmap <leader>w= <C-W>=
 
 " <<
 
@@ -86,6 +88,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
 Plugin 'vim-scripts/phd'
+Plugin 'shougo/neocomplete.vim'
+Plugin 'vim-scripts/Visual-Mark'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'nathanaelkane/vim-indent-guides'
@@ -118,6 +122,7 @@ filetype plugin indent on
 
 " 配色方案
 set background=dark
+"colorscheme default
 "colorscheme solarized
 colorscheme molokai
 "colorscheme phd
@@ -140,7 +145,7 @@ set guioptions-=T
 
 " 将外部命令 wmctrl 控制窗口最大化的命令行参数封装成一个 vim 的函数
 fun! ToggleFullscreen()
-	call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")
+    call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")
 endf
 " 全屏开/关快捷键
 map <silent> <F11> :call ToggleFullscreen()<CR>
@@ -178,10 +183,17 @@ set guifont=YaHei\ Consolas\ Hybrid\ 10.5
 
 " 禁止折行
 set nowrap
+"set wrap
+"set linebreak
+"set colorcolumn=81
+"set textwidth=80
+set fo+=tw 
+set formatoptions+=lv
 
 " 设置状态栏主题风格
 let g:Powerline_colorscheme='solarized256'
 
+let g:neocomplete#enable_at_startup=1
 " <<
 
 " >>
@@ -208,6 +220,13 @@ set tabstop=4
 set shiftwidth=4
 " 让 vim 把连续数量的空格视为一个制表符
 set softtabstop=4
+set smarttab
+
+"显示tab符号
+set autoindent
+set smartindent
+set autoread
+"set relativenumber
 
 " 缩进可视化插件 Indent Guides
 " 随 vim 自启动
@@ -245,34 +264,33 @@ nmap <silent> <Leader>sw :FSHere<cr>
 
 " 自定义 vim-signature 快捷键
 let g:SignatureMap = {
-        \ 'Leader'             :  "m",
-        \ 'PlaceNextMark'      :  "m,",
-        \ 'ToggleMarkAtLine'   :  "m.",
-        \ 'PurgeMarksAtLine'   :  "m-",
-        \ 'DeleteMark'         :  "dm",
-        \ 'PurgeMarks'         :  "mda",
-        \ 'PurgeMarkers'       :  "m<BS>",
-        \ 'GotoNextLineAlpha'  :  "']",
-        \ 'GotoPrevLineAlpha'  :  "'[",
-        \ 'GotoNextSpotAlpha'  :  "`]",
-        \ 'GotoPrevSpotAlpha'  :  "`[",
-        \ 'GotoNextLineByPos'  :  "]'",
-        \ 'GotoPrevLineByPos'  :  "['",
-        \ 'GotoNextSpotByPos'  :  "mn",
-        \ 'GotoPrevSpotByPos'  :  "mp",
-        \ 'GotoNextMarker'     :  "[+",
-        \ 'GotoPrevMarker'     :  "[-",
-        \ 'GotoNextMarkerAny'  :  "]=",
-        \ 'GotoPrevMarkerAny'  :  "[=",
-        \ 'ListLocalMarks'     :  "ms",
-        \ 'ListLocalMarkers'   :  "m?"
-        \ }
+            \ 'Leader'             :  "m",
+            \ 'PlaceNextMark'      :  "m,",
+            \ 'ToggleMarkAtLine'   :  "m.",
+            \ 'PurgeMarksAtLine'   :  "m-",
+            \ 'DeleteMark'         :  "dm",
+            \ 'PurgeMarks'         :  "mda",
+            \ 'PurgeMarkers'       :  "m<BS>",
+            \ 'GotoNextLineAlpha'  :  "']",
+            \ 'GotoPrevLineAlpha'  :  "'[",
+            \ 'GotoNextSpotAlpha'  :  "`]",
+            \ 'GotoPrevSpotAlpha'  :  "`[",
+            \ 'GotoNextLineByPos'  :  "]'",
+            \ 'GotoPrevLineByPos'  :  "['",
+            \ 'GotoNextSpotByPos'  :  "mn",
+            \ 'GotoPrevSpotByPos'  :  "mp",
+            \ 'GotoNextMarker'     :  "[+",
+            \ 'GotoPrevMarker'     :  "[-",
+            \ 'GotoNextMarkerAny'  :  "]=",
+            \ 'GotoPrevMarkerAny'  :  "[=",
+            \ 'ListLocalMarks'     :  "ms",
+            \ 'ListLocalMarkers'   :  "m?"
+            \ }
 
 " <<
 
 " >>
 " 标签列表
-
 " 设置 tagbar 子窗口的位置出现在主编辑区的左边
 let tagbar_left=1
 " 设置显示／隐藏标签列表子窗口的快捷键。速记：identifier list by tag
@@ -283,45 +301,45 @@ let tagbar_width=32
 let g:tagbar_compact=1
 " 设置 ctags 对哪些代码标识符生成标签
 let g:tagbar_type_cpp = {
-     \ 'ctagstype' : 'c++',
-     \ 'kinds'     : [
-         \ 'c:classes:0:1',
-         \ 'd:macros:0:1',
-         \ 'e:enumerators:0:0', 
-         \ 'f:functions:0:1',
-         \ 'g:enumeration:0:1',
-         \ 'l:local:0:1',
-         \ 'm:members:0:1',
-         \ 'n:namespaces:0:1',
-         \ 'p:functions_prototypes:0:1',
-         \ 's:structs:0:1',
-         \ 't:typedefs:0:1',
-         \ 'u:unions:0:1',
-         \ 'v:global:0:1',
-         \ 'x:external:0:1'
-     \ ],
-     \ 'sro'        : '::',
-     \ 'kind2scope' : {
-         \ 'g' : 'enum',
-         \ 'n' : 'namespace',
-         \ 'c' : 'class',
-         \ 's' : 'struct',
-         \ 'u' : 'union'
-     \ },
-     \ 'scope2kind' : {
-         \ 'enum'      : 'g',
-         \ 'namespace' : 'n',
-         \ 'class'     : 'c',
-         \ 'struct'    : 's',
-         \ 'union'     : 'u'
-     \ }
-\ }
+            \ 'ctagstype' : 'c++',
+            \ 'kinds'     : [
+            \ 'c:classes:0:1',
+            \ 'd:macros:0:1',
+            \ 'e:enumerators:0:0', 
+            \ 'f:functions:0:1',
+            \ 'g:enumeration:0:1',
+            \ 'l:local:0:1',
+            \ 'm:members:0:1',
+            \ 'n:namespaces:0:1',
+            \ 'p:functions_prototypes:0:1',
+            \ 's:structs:0:1',
+            \ 't:typedefs:0:1',
+            \ 'u:unions:0:1',
+            \ 'v:global:0:1',
+            \ 'x:external:0:1'
+            \ ],
+            \ 'sro'        : '::',
+            \ 'kind2scope' : {
+            \ 'g' : 'enum',
+            \ 'n' : 'namespace',
+            \ 'c' : 'class',
+            \ 's' : 'struct',
+            \ 'u' : 'union'
+            \ },
+            \ 'scope2kind' : {
+            \ 'enum'      : 'g',
+            \ 'namespace' : 'n',
+            \ 'class'     : 'c',
+            \ 'struct'    : 's',
+            \ 'union'     : 'u'
+            \ }
+            \ }
 
 " <<
 
 " >>
 " 代码导航
- 
+
 " 基于标签的代码导航
 
 " 设置插件 indexer 调用 ctags 的参数
@@ -403,9 +421,9 @@ let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
 
 " YCM 补全菜单配色
 " 菜单
-highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
+"highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
 " 选中项
-highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
+"highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
 
 " 补全功能在注释中同样有效
 let g:ycm_complete_in_comments=1
@@ -440,7 +458,7 @@ let g:ycm_seed_identifiers_with_syntax=1
 "cscope setting
 """"""""""""""""""""""""""""""""
 if has("cscope")
-    set csprg=/usr/local/bin/cscope
+    set csprg=/usr/bin/cscope
     set csto=1
     set cst
     set nocsverb
@@ -460,7 +478,7 @@ nmap <leader>cfi :cs find i ^<C-R>=expand("<cfile>")<CR>$<R>
 nmap <leader>cfd :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 " <<
- 
+
 " >>
 " 由接口快速生成实现框架
 
@@ -471,7 +489,7 @@ let g:disable_protodef_sorting=1
 
 " >>
 " 库信息参考
- 
+
 " 启用:Man命令查看各类man信息
 source $VIMRUNTIME/ftplugin/man.vim
 
@@ -500,7 +518,7 @@ let NERDTreeAutoDeleteBuffer=1
 
 " >>
 " 多文档编辑
- 
+
 " 显示/隐藏 MiniBufExplorer 窗口
 map <Leader>bl :MBEToggle<cr>
 
@@ -516,7 +534,6 @@ map <C-S-Tab> :MBEbp<cr>
 
 " 设置环境保存项
 set sessionoptions="blank,globals,localoptions,tabpages,sesdir,folds,help,options,resize,winpos,winsize"
-
 " 保存 undo 历史。必须先行创建 .undo_history/
 set undodir=~/.undo_history/
 set undofile
@@ -530,14 +547,14 @@ map <leader>ss :mksession! my.vim<cr>
 map <leader>rs :source my.vim<cr>
 
 " <<
- 
+
 " 设置快捷键实现一键编译及运行
 nmap <Leader>m :wa<CR> :cd build/<CR> :!rm -rf main<CR> :!cmake CMakeLists.txt<CR>:make<CR><CR> :cw<CR> :cd ..<CR>
 nmap <Leader>g :wa<CR>:cd build/<CR>:!rm -rf main<CR>:!cmake CMakeLists.txt<CR>:make<CR><CR>:cw<CR>:cd ..<CR>:!build/main<CR>
 
 " >>
 " 快速选中结对符内的文本
- 
+
 " 快捷键
 map <SPACE> <Plug>(wildfire-fuel)
 vmap <S-SPACE> <Plug>(wildfire-water)
