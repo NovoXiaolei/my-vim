@@ -429,7 +429,7 @@ cnoremap <C-e> <End>
 
 " 搜索相关
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
+" map <space> /
 " 进入搜索Use sane regexes"
 nnoremap / /\v
 vnoremap / /\v
@@ -494,6 +494,10 @@ noremap <leader>0 :tablast<cr>
 " Toggles between the active and last active tab "
 " The first tab is always 1 "
 let g:last_active_tab = 1
+
+let g:ycm_server_keep_logfiles = 1
+let g:ycm_server_log_level = 'debug'
+
 " nnoremap <leader>gt :execute 'tabnext ' . g:last_active_tab<cr>
 " nnoremap <silent> <c-o> :execute 'tabnext ' . g:last_active_tab<cr>
 " vnoremap <silent> <c-o> :execute 'tabnext ' . g:last_active_tab<cr>
@@ -689,6 +693,26 @@ highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
 
+if has("cscope")
+    set csprg=/usr/bin/cscope
+    set csto=0
+    set cst
+    set nocsverb
+    if filereadable("cscope.out")
+        cs add cscope.out
+    elseif $CSCOPE_DB !=""
+        cs add $CSCOPE_DB
+    endif
+    set csverb
+endif
+nmap <Leader>cs :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>cg :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>cc :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>ct :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>ce :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>cf :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <Leader>ci :cs find i <C-R>=expand("<cfile>")<CR><CR>
+nmap <Leader>cd :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 
 
