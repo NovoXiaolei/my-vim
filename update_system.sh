@@ -2,6 +2,7 @@ sudo dnf config-manager --add-repo=http://repo.fdzh.org/FZUG/FZUG.repo
 wget https://repo.fdzh.org/chrome/google-chrome-mirrors.repo -P /etc/yum.repos.d/  # Fedora/RHEL
 sudo dnf install google-chrome-beta
 sudo dnf install sogoupinyin
+sudo dnf install util-linux-user
 sudo dnf update 
 sudo dnf install util-linux-user
 sudo dnf install ctags
