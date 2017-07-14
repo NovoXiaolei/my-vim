@@ -673,8 +673,8 @@ endif
 set background=dark
 set t_Co=256
 
-"colorscheme solarized
- colorscheme molokai
+colorscheme solarized
+" colorscheme molokai
 " colorscheme desert
 
 
@@ -713,6 +713,5 @@ nmap <Leader>ce :cs find e <C-R>=expand("<cword>")<CR><CR>
 nmap <Leader>cf :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <Leader>ci :cs find i <C-R>=expand("<cfile>")<CR><CR>
 nmap <Leader>cd :cs find d <C-R>=expand("<cword>")<CR><CR>
-
 
 
