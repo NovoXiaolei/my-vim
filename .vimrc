@@ -88,7 +88,7 @@ set noswapfile
   " " set undodir=/tmp/vimundo/
 " endif
 
-set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
+set wildignore=*.swp,*.bak,*.pyc,*.class,.svn,.git
 
 " 突出显示当前列
 set cursorcolumn
@@ -98,7 +98,7 @@ set cursorline
 
 " 设置 退出vim后，内容显示在终端屏幕, 可以用于查看和复制, 不需要可以去掉
 " 好处：误删什么的，如果以前屏幕打开，可以找回
-set t_ti= t_te=
+"set t_ti= t_te=
 
 
 " 鼠标暂不启用, 键盘党....
@@ -277,7 +277,7 @@ set formatoptions+=B
 " others 其它设置
 "==========================================
 " vimrc文件修改之后自动加载, windows
-autocmd! bufwritepost _vimrc source %
+"autocmd! bufwritepost _vimrc source %
 " vimrc文件修改之后自动加载, linux
 autocmd! bufwritepost .vimrc source %
 
@@ -294,7 +294,7 @@ set wildignore=*.o,*~,*.pyc,*.class
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 " 回车即选中当前项
-inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+"inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
 
 " In the quickfix window, <CR> is used to jump to the error under the
 " cursor, so undefine the mapping there.
@@ -388,10 +388,10 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 "map <C-k> <C-W>k
 "map <C-h> <C-W>h
 "map <C-l> <C-W>l
-nnoremap <Leader>lw <C-W>l
-nnoremap <Leader>hw <C-W>h
-nnoremap <Leader>kw <C-W>k
-nnoremap <Leader>jw <C-W>j
+"nnoremap <Leader>lw <C-W>l
+"nnoremap <Leader>hw <C-W>h
+"nnoremap <Leader>kw <C-W>k
+"nnoremap <Leader>jw <C-W>j
 
 
 " http://stackoverflow.com/questions/13194428/is-better-way-to-zoom-windows-in-vim-than-zoomwin
@@ -417,29 +417,29 @@ noremap L $
 
 
 " Map ; to : and save a million keystrokes 用于快速进入命令行
-nnoremap ; :
+"nnoremap ; :
 
 
 " 命令行模式增强，ctrl - a到行首， -e 到行尾
-cnoremap <C-j> <t_kd>
-cnoremap <C-k> <t_ku>
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
+"cnoremap <C-j> <t_kd>
+"cnoremap <C-k> <t_ku>
+"cnoremap <C-a> <Home>
+"cnoremap <C-e> <End>
 
 
 " 搜索相关
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 " map <space> /
 " 进入搜索Use sane regexes"
-nnoremap / /\v
-vnoremap / /\v
+"nnoremap / /\v
+"vnoremap / /\v
 
 " Keep search pattern at the center of the screen.
-nnoremap <silent> n nzz
-nnoremap <silent> N Nzz
-nnoremap <silent> * *zz
-nnoremap <silent> # #zz
-nnoremap <silent> g* g*zz
+"nnoremap <silent> n nzz
+"nnoremap <silent> N Nzz
+"nnoremap <silent> * *zz
+"nnoremap <silent> # #zz
+"nnoremap <silent> g* g*zz
 
 " 去掉搜索高亮
 noremap <silent><leader>/ :nohls<CR>
@@ -536,7 +536,7 @@ nnoremap <leader>v V`}
 cmap w!! w !sudo tee >/dev/null %
 
 " kj 替换 Esc
-inoremap kj <Esc>
+"inoremap kj <Esc>
 
 " 滚动Speed up scrolling of the viewport slightly
 nnoremap <C-e> 2<C-e>
@@ -673,8 +673,8 @@ endif
 set background=dark
 set t_Co=256
 
-colorscheme solarized
-" colorscheme molokai
+"colorscheme solarized
+ colorscheme molokai
 " colorscheme desert
 
 
