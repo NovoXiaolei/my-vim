@@ -182,7 +182,7 @@ set foldenable
 " syntax    使用语法定义折叠
 " diff      对没有更改的文本进行折叠
 " marker    使用标记进行折叠, 默认标记是 {{{ 和 }}}
-set foldmethod=indent
+set foldmethod=manual
 set foldlevel=99
 " 代码折叠自定义快捷键 <leader>zz
 let g:FoldMethod = 0
@@ -674,7 +674,7 @@ set background=dark
 set t_Co=256
 
 "colorscheme solarized
- colorscheme molokai
+colorscheme molokai
 " colorscheme desert
 
 
