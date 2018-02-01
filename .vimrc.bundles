@@ -238,6 +238,7 @@ if count(g:bundle_groups, 'lua')
     "Plug 'xolox/vim-lua-inspect'
     Plug 'xolox/vim-misc'
     Plug 'tbastos/vim-lua'
+
 endif
 
 " if count(g:bundle_groups, 'shell')
