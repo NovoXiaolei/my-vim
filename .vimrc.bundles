@@ -5,7 +5,7 @@
 "------------------------------------------- begin of configs --------------------------------------------
 
 " ################### 包依赖 #####################
-" package dependence:  ctags, ag(he_silver_searcher)
+" package dependence:  ctags, ag(the_silver_searcher)
 " python dependence:   pep8, pyflake
 
 " 非兼容vi模式。去掉讨厌的有关vi一致性模式，避免以前版本的一些bug和局限
@@ -108,6 +108,7 @@ Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky'
 " T - Lkie t but focus CtrlSF window instead of opened new tab.
 " q - Quit CtrlSF window.
 Plug 'dyng/ctrlsf.vim'
+Plug 'rking/ag.vim'
 " incsearch
 " Plug 'haya14busa/incsearch.vim'
 " map /  <Plug>(incsearch-forward)
@@ -632,9 +633,11 @@ endif
 
 
 " ctrlsf {{{
+    nmap <D-f> :CtrlSF <C-R>=expand("<cword>")<CR>
     nmap \ <Plug>CtrlSFCwordPath<CR>
-    " let g:ctrlsf_position = 'below'
-    " let g:ctrlsf_winsize = '30%'
+    let g:ctrlsf_ackprg = 'ag'
+    let g:ctrlsf_position = 'below'
+    let g:ctrlsf_winsize = '30%'
     let g:ctrlsf_auto_close = 0
     let g:ctrlsf_confirm_save = 0
     " Note: cannot use <CR> or <C-m> for open
