@@ -109,6 +109,7 @@ Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky'
 " q - Quit CtrlSF window.
 Plug 'dyng/ctrlsf.vim'
 Plug 'rking/ag.vim'
+"Plug 'mileszs/ack.vim'
 " incsearch
 " Plug 'haya14busa/incsearch.vim'
 " map /  <Plug>(incsearch-forward)
@@ -605,7 +606,7 @@ endif
     map <leader>f :CtrlPMRU<CR>
     let g:ctrlp_custom_ignore = {
         \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
-        \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+        \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc|meta|lua.meta)$',
         \ }
     let g:ctrlp_working_path_mode=0
     let g:ctrlp_match_window_bottom=1
@@ -635,9 +636,14 @@ endif
 " ctrlsf {{{
     nmap <D-f> :CtrlSF <C-R>=expand("<cword>")<CR>
     nmap \ <Plug>CtrlSFCwordPath<CR>
+    nmap <Leader>c :CtrlSF
     let g:ctrlsf_ackprg = 'ag'
-    let g:ctrlsf_position = 'below'
-    let g:ctrlsf_winsize = '30%'
+    let g:ctrlsf_default_view_mode='compact'
+    "let g:ctrlsf_case_sensitive='no'
+    let g:ctrlsf_default_root='cwd'
+    let g:ctrlsf_ignore_dir=['Data', 'Story','3rd','map','log','etc','scripts','luaclib-src','sql','var','table','protocol']
+    "let g:ctrlsf_position = 'below'
+    "let g:ctrlsf_winsize = '30%'
     let g:ctrlsf_auto_close = 0
     let g:ctrlsf_confirm_save = 0
     " Note: cannot use <CR> or <C-m> for open
@@ -654,6 +660,7 @@ endif
         \ "pquit" : "q",
         \ }
 " }}}
+"
 
 " git.  git操作还是习惯命令行,vim里面处理简单diff编辑操作
 
