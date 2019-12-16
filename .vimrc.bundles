@@ -146,6 +146,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'tomasr/molokai'
 Plug 'dracula/vim'
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'haishanh/night-owl.vim'
 
 " nav
 " nerdtree nerdtreetabs
@@ -185,7 +186,7 @@ if count(g:bundle_groups, 'golang')
     " 1. vim a.go
     " 2. :GoInstallBinaries
     " vimgo  https://github.com/fatih/vim-go
-    Plug 'fatih/vim-go', {'for': 'go'}
+    "Plug 'fatih/vim-go', {'for': 'go'}
 endif
 
 
@@ -751,6 +752,7 @@ endif
     let g:molokai_original = 1
     let g:rehash256 = 1
 " }}}
+"
 
 " ################### 快速导航 ###################
 
