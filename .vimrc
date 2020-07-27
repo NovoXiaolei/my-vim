@@ -228,7 +228,7 @@ set ttyfast
 set nrformats=
 
 " 相对行号: 行号变成相对，可以用 nj/nk 进行跳转
-set relativenumber number
+"set relativenumber number
 au FocusLost * :set norelativenumber number
 au FocusGained * :set relativenumber
 " 插入模式下用绝对行号, 普通模式下用相对
@@ -428,8 +428,8 @@ cnoremap <C-e> <End>
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 map <space> /
 " 进入搜索Use sane regexes"
-nnoremap / /\v
-vnoremap / /\v
+"nnoremap / /\v
+"vnoremap / /\v
 
 " Keep search pattern at the center of the screen.
 nnoremap <silent> n nzz
@@ -657,8 +657,8 @@ endif
 set background=dark
 set t_Co=256
 
-"colorscheme solarized
-"color dracula 
+colorscheme solarized
+color dracula
 colorscheme molokai
 
 
@@ -689,7 +689,7 @@ if has("cscope")
   if filereadable("cscope.out")
       cs add cscope.out
   endif
-  
+
   set csverb
 endif
 

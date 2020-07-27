@@ -1,7 +1,7 @@
 #!/bin/bash
 
-sudo apt install libevent-devel
-sudo apt install ncurses-devel
+sudo yum install libevent-devel
+sudo yum install ncurses-devel
 git clone https://github.com/tmux/tmux.git
 cd tmux/
 sh autogen.sh
