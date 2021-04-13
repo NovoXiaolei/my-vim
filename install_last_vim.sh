@@ -1,26 +1,29 @@
-sudo apt install libncurses5-dev libgnome2-dev libgnomeui-dev \
-	libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
-	libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
-	python3-dev ruby-dev lua5.1 liblua5.1-dev libperl-dev git
-sudo apt remove vim vim-runtime gvim
-cd ~
-git clone https://github.com/vim/vim.git
-cd vim
-./configure --with-features=huge \
-	--enable-multibyte \
-	--enable-rubyinterp=yes \
-	--enable-python3interp=yes \
-	--with-python3-config-dir=/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu \
-	--enable-perlinterp=yes \
-	--enable-luainterp=yes \
-	--enable-gui=gtk2 \
-	--enable-cscope \
-	--prefix=/usr/local
+sudo yum install epel-release
+sudo yum install gcc-c++ ncurses-devel ruby ruby-devel lua lua-devel luajit luajit-devel ctags python python-devel python3 python3-devel tcl-devel perl perl-devel perl-ExtUtils-ParseXS perl-ExtUtils-XSpp perl-ExtUtils-CBuilder perl-ExtUtils-Embed cscope gtk3-devel libSM-devel libXt-devel libXpm-devel libappstream-glib libacl-devel gpm-devel
 
-make VIMRUNTIMEDIR=/usr/local/share/vim/vim81
-cd ~/vim
-sudo make install
-sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
-sudo update-alternatives --set editor /usr/local/bin/vim
-sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
-sudo update-alternatives --set vi /usr/local/bin/vim
+yum list installed | grep -i vim
+# sudo yum erase vim-common.x86_64 vim-enhanced.x86_64 vim-filesystem.x86_64 vim-X11
+
+# sudo depends on vim-minimal
+sudo rpm -e --nodeps vim-minimal
+
+sudo ln -s /usr/bin/python3.6 python3
+
+git clone https://github.com/vim/vim.git
+
+./configure --with-features=huge \
+ --enable-pythoninterp=yes \
+ --enable-python3interp=yes \
+ --enable-perlinterp=yes \
+ --disable-tclinterp \
+ --with-x=yes \
+ --enable-gui=gtk3 --enable-multibyte \
+ --enable-cscope \
+ --with-tlib=ncurses \
+--enable-fail-if-missing \
+--disable-darwin --enable-luainterp=yes \
+--enable-rubyinterp=yes --enable-terminal \
+ --enable-fontset --with-luajit --with-python3-command=python3 \
+--enable-gtk3-check
+
+make && sudo make install
